@@ -3,7 +3,7 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.springframework</groupId>
+    <groupId>com.neueda</groupId>
     <artifactId>link-shortener-app</artifactId>
     <version>0.1.0</version>
     <packaging>jar</packaging>
@@ -30,12 +30,6 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <maven-surefire-plugin.version>2.18.1</maven-surefire-plugin.version>
-
-        <!--<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>-->
-        <!--<sonar.java.codeCoveragePlugin>jacoco</sonar.java.codeCoveragePlugin>-->
-        <!--<sonar.surefire.reportsPath>/target/surefire-reports</sonar.surefire.reportsPath>-->
-        <!--<sonar.jacoco.reportPath>target/jacoco-ut.exec</sonar.jacoco.reportPath>-->
-        <!--<sonar.jacoco.itReportPath>target/jacoco-it.exec</sonar.jacoco.itReportPath>-->
 
         <skipUnitTests>false</skipUnitTests>
         <skipIntegrationTests>false</skipIntegrationTests>

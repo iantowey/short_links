@@ -10,7 +10,7 @@ Developed using spring boot / rdbms persistence apache derby db
 *   clone repo
 
 ```shell
-git clone 
+git clone https://github.com/iantowey/short_links.git
 ```
 
 *  build project and docker images
