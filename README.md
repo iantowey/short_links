@@ -25,7 +25,7 @@ docker run -p 1527:1527 --name=docker_apachedb az82/docker-derby
 
 *  start spring boot link shortener application
 ```shell
-docker run -p 1527:1527 --name=docker_apachedb az82/docker-derby
+docker run -d -t --name link_shortener_app --link docker_apachedb:docker_apachedb -p 8080:8080 itowey/link-shortener-app
 ```
 
 ### API endpoints and Sample usage
@@ -41,6 +41,7 @@ for url in "www.bbc.co.uk" "www.google.co.uk" "www.rte.ie" "www.cnn.com" "www.yo
 do
 echo $url
 curl -H "Content-Type: text/html" -d $url -X POST http://localhost:8080/short/link
+echo 
 done
 ```
 
@@ -49,9 +50,13 @@ done
 curl -X GET http://localhost:8080/short/links
 ```
 
-*   test redirects (link sourced from ehcache), redirect client info persisted to table :  short_links.hit_metrics
+*   test redirects (link sourced from ehcache), redirect client info persisted to table :  short_links.hit_metrics (redirect to youtube)
 ```shell
 http://localhost:8080/ly/281dab9e
+
+or
+
+curl -v -X GET http://localhost:8080/ly/281dab9e
 ```
 
 *   check hit metrics for link with id
