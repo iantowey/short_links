@@ -20,7 +20,7 @@ $MVN_HOME/bin/mvn -Dspring.profiles.active=test clean verify install jacoco:repo
 
 *  start apache derby db
 ```shell
-docker run -p 1527:1527 --name=docker_apachedb az82/docker-derby
+docker run -d -p 1527:1527 --name=docker_apachedb az82/docker-derby
 ```
 
 *  start spring boot link shortener application
