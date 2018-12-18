@@ -1,0 +1,107 @@
+databaseChangeLog:
+  - changeSet:
+      id: links-table
+      author: itowey
+      changes:
+        - createTable:
+            schemaName: short_links
+            tableName: links
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: url
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: short_path
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: short_url
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: creation_date
+                  type: timestamp(6)
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: addUniqueConstraint-links.url
+      author: itowey
+      changes:
+        - addUniqueConstraint:
+            columnNames: url
+            constraintName: uniq_url
+            deferrable: true
+            disabled: true
+            initiallyDeferred: true
+            schemaName: short_links
+            tableName: links
+
+  - changeSet:
+      id: addIndexConstraint-links.short_path
+      author: itowey
+      changes:
+        - createIndex:
+            columns:
+            - column:
+                name: short_path
+                type: varchar(255)
+            indexName: idx_short_path
+            schemaName: short_links
+            tableName: links
+            unique: true
+
+  - changeSet:
+      id: hit-metrics-table
+      author: itowey
+      changes:
+        - createTable:
+            schemaName: short_links
+            tableName: hit_metrics
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: link_id
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: hit_timestamp
+                  type: timestamp(6)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: client_info
+                  type: varchar(32672)
+                  constraints:
+                    nullable: true
+
+  - changeSet:
+      id: addForeignKeyConstraint-example
+      author: itowey
+      changes:
+        - addForeignKeyConstraint:
+            constraintName: fk_link
+            baseColumnNames: link_id
+            baseTableName: hit_metrics
+            baseTableSchemaName: short_links
+            referencedColumnNames: id
+            referencedTableName: links
+            referencedTableSchemaName: short_links

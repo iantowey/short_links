@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  apache_db_link:
+    image: az82/docker-derby:latest
+    ports:
+      - 1527:1527
+  link-shortener-app:
+    image: itowey/link-shortener-app
+    depends_on:
+      - apache_db_link
+    ports:
+      - 8080:8080

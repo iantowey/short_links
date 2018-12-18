@@ -1,0 +1,117 @@
+spring:
+  profiles: default
+  application:
+    name: LinkShortenerApp
+  data:
+    jpa:
+      repositories:
+        bootstrap-mode: default
+      show-sql: true
+      properties:
+        hibernate:
+          format_sql: true
+
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+cache:
+    name: short-links
+
+ribbon:
+  ServerListRefreshInterval: 1000
+
+endpoints:
+  health:
+    sensitive: false
+  restart:
+    enabled: true
+  shutdown:
+    enabled: true
+
+jdbc:
+    driverClassName: org.apache.derby.jdbc.ClientDriver
+    url: jdbc:derby://127.0.0.1:1527/short_links;create=true
+    password: short_links
+    username: short_links
+
+---
+
+spring:
+  profiles: test
+  application:
+    name: LinkShortenerApp
+  data:
+    jpa:
+      repositories:
+        bootstrap-mode: default
+      show-sql: true
+      properties:
+        hibernate:
+          format_sql: true
+
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+cache:
+  name: short-links
+
+ribbon:
+  ServerListRefreshInterval: 1000
+
+endpoints:
+  health:
+    sensitive: false
+  restart:
+    enabled: true
+  shutdown:
+    enabled: true
+
+jdbc:
+  driverClassName: org.apache.derby.jdbc.ClientDriver
+  url:  jdbc:derby:memory:short_links;create=true
+  password: short_links
+  username: short_links
+
+---
+
+spring:
+  profiles: prod
+  application:
+    name: LinkShortenerApp
+  data:
+    jpa:
+      repositories:
+        bootstrap-mode: default
+      show-sql: true
+      properties:
+        hibernate:
+          format_sql: true
+
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+cache:
+  name: short-links
+
+ribbon:
+  ServerListRefreshInterval: 1000
+
+endpoints:
+  health:
+    sensitive: false
+  restart:
+    enabled: true
+  shutdown:
+    enabled: true
+
+jdbc:
+  driverClassName: org.apache.derby.jdbc.ClientDriver
+  url: jdbc:derby://docker_apachedb:1527/short_links;create=true
+  password: short_links
+  username: short_links
